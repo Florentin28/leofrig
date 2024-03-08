@@ -21,7 +21,7 @@ class HomeController extends Controller
                    ");
     
     
-        // Convertir les résultats en une collection
+        // Convertir les résultats en une collections
         $collection = collect($results);
     
         // Paginer les résultats manuellement
