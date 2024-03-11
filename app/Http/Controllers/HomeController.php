@@ -31,7 +31,7 @@ class HomeController extends Controller
         $releves = new Paginator($currentPageItems, count($collection), $perPage);
     
         // Retourner la vue "home" en passant les données récupérées
-        return view('home', compact('releves'));
+        return view('home', compact('releves'));    
     }
     
 }

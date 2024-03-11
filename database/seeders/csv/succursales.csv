@@ -1,0 +1,61 @@
+﻿id;Nom;Pays;email;langue;motpasse;sw_actif;created_at;updated_at
+2;Adolphe Max;BE;leonidas.max@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+3;Anspach;BE;leonidas.anspach@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+6;Fripiers;BE;leonidas.fripiers@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+9;Oostende;BE;leonidas.oostende@leonidas.be;NL;;1;11/03/2024 09:26;11/03/2024 09:26
+10;Bascule;BE;leonidas.bascule@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+11;Beurre;BE;leonidas.beurre@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+12;Ixelles (Stassart);BE;leonidas.ixelles@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+13;Keyzerlei;BE;leonidas.keyzerlei@leonidas.be;NL;;0;11/03/2024 09:26;11/03/2024 09:26
+14;Waterloo;BE;leonidas.waterloo@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+17;Vilvoorde;BE;leonidas.vilvoorde@leonidas.be;NL;;1;11/03/2024 09:26;11/03/2024 09:26
+18;Georges-Henri;BE;leonidas.woluwe@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+24;Jette;BE;leonidas.jette@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+25;Xavier de Bue;BE;leonidas.xavierdebue@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+27;Wijnegem;BE;leonidas.wijnegem@leonidas.be;NL;;1;11/03/2024 09:26;11/03/2024 09:26
+28;Métro Rogier;BE;leonidas.rogier@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+29;Ravenstein;BE;leonidas.ravenstein@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+31;Métro Midi;BE;leonidas.midi@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+32;Métro Louise;BE;leonidas.louise@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+33;Schuman;BE;leonidas.schuman@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+40;Toison d'Or;BE;leonidas.toisondor@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+45;Madou;BE;leonidas.madou@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+46;Keyserlei 28;BE;leonidas.keyserlei28@leonidas.be;NL;;1;11/03/2024 09:26;11/03/2024 09:26
+47;Mint;BE;leonidas.mint@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+48;Petits Carreaux;FR;leonidas.pariscarreaux@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+51;Forum des Halles;FR;leonidas.parisforumhalles@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+52;Etuve;BE;Leonidas.Etuve@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+53;Galerie du Roi;BE;Leonidas.GalerieduRoi@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+54;Kraainem;BE;leonidas.kraainem@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+55;Euralille;FR;leonidas.euralille@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+56;Place Stéphanie;BE;leonidas.placestephanie@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+64;Tongres;BE;leonidas.tongres@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+65;Boulogne;FR;leonidas.boulogne@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+66;Villeneuve d'Ascq;FR;leonidas.v2@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+67;Valenciennes Sud;FR;leonidas.valenciennessud@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+69;Gare Centrale;BE;leonidas.garecentrale@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+70;Galerie Lousie;BE;leonidas.galerielouise@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+72;Woluwe Shopping Center;BE;leonidas.woluweshoppingcenter@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+73;Rue Neuve 5;BE;leonidas.rueneuve5@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+74;Sablon;BE;leonidas.sablon@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+79;Noyelles-Godault;FR;leonidas.noyelles@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+81;Beauvais;FR;leonidas.beauvais@leonidas.com;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+83;Lille Rue Neuve;FR;leonidas.lillereuve@leonidas.com;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+84;Rue Neuve;BE;leonidas.rueneuve@leonidas.be;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+85;Lille Wazemmes;FR;leonidas.lillewazemmes@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+86;Lille Faidherbe;FR;leonidas.lille@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+89;Flagey;BE;leonidas.flagey@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+90;Grande Synthe;FR;leonidas.grandesynthe@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+91;Calais;FR;leonidas.calais@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+92;Rouen Saint Sever;FR;leonidas.saintsever@leonidas.com;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+93;Petite Forêt;FR;leonidas.petiteforet@leonidas.com;FR;;1;11/03/2024 09:26;11/03/2024 09:26
+94;Froissart;BE;leonidas.froissart@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
+301;Neuss;DE;leonidas.neuss@leonidas.com;DE;;0;11/03/2024 09:26;11/03/2024 09:26
+302;Essen;DE;leonidas.essen@leonidas.com;DE;;0;11/03/2024 09:26;11/03/2024 09:26
+304;Cologne;DE;leonidas.Cologne@leonidas.com;DE;;0;11/03/2024 09:26;11/03/2024 09:26
+402;SJW;GB;leonidas.sjw@leonidas.com;EN;;0;11/03/2024 09:26;11/03/2024 09:26
+403;Ealing;GB;leonidas.ealing@leonidas.com;EN;;1;11/03/2024 09:26;11/03/2024 09:26
+501;Rotterdam - Markthal;NL;leonidas.rotterdam@leonidas.com;NL;;1;11/03/2024 09:26;11/03/2024 09:26
+502;Utrecht;NL;leonidas.utrecht@leonidas.com;NL;;1;11/03/2024 09:26;11/03/2024 09:26
+701;Groenplaats;BE;chocolatescafe.groenplaats@leonidas.be;NL;;0;11/03/2024 09:26;11/03/2024 09:26
+999;Z_TEST;BE;ict.support@leonidas.be;FR;;0;11/03/2024 09:26;11/03/2024 09:26
