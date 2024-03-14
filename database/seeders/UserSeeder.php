@@ -23,6 +23,9 @@ class UserSeeder extends Seeder
             'email' => 'user@example.com',
             'role' => 'user',
             'password' => bcrypt('password'),
+            'id_succ' => 12, // test avec l'identifiant 12 de la succursale de ixelle
+
+
         ]);
     }
 }

@@ -4,14 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Releve extends Model
+class TypeLocal extends Model
 {
     // Définit le nom de la table dans la base de données
-    protected $table = 'releves';
+    protected $table = 'type_local';
 
     // Définit les colonnes pouvant être massivement attribuées
-    protected $fillable = ['id_succ', 'id_local', 'id_datetime', 'id_moment', 'releve_temp', 'tmp_ok', 'releve_hum', 'hum_ok', 'releve_comment'];
-
+    protected $fillable = [
+        'desc', 'T_min', 'T_max', 'sw_hum', 'H_min', 'H_max'
+    ];
 
     // Définit la connexion à utiliser (si différente de la connexion par défaut)
     protected $connection = 'succursales';

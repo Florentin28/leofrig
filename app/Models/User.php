@@ -65,6 +65,11 @@ class User extends Authenticatable
         return $this->role === 'user';
     }
 
+    public function succursale()
+    {
+        return $this->belongsTo(Succursale::class, 'id_succ');
+    }
+
     public function getRedirectRoute()
 {
     return route('home');

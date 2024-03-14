@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReleveController; 
+
 
 
 /*
@@ -43,6 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Route pour l'ajout de données dans la base de données
+Route::get('/nouveau-releve', [ReleveController::class, 'create'])->name('nouveau_releve');
+Route::post('/releves', [ReleveController::class, 'store'])->name('releves.store');
+
+
 
 // Include les routes d'authentification
 require __DIR__.'/auth.php';

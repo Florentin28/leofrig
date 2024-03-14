@@ -98,6 +98,13 @@ th {
         @csrf
         <button type="submit" class="logout-btn">Déconnexion</button>
     </form>
+    
+     <!-- Affichage du message de succès -->
+     @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <!-- Affichage des données de la table "releves" -->
     <div class="table-container">
@@ -130,6 +137,10 @@ th {
             </tbody>
         </table>
     </div>
+
+    <!-- Bouton d'ajout -->
+<a href="{{ route('nouveau_releve') }}" class="ajout-btn">Ajouter du contenu</a>
+
 
     <!-- Pagination -->
     <div class="pagination">
