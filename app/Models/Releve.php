@@ -12,9 +12,18 @@ class Releve extends Model
     // Définit les colonnes pouvant être massivement attribuées
     protected $fillable = ['id_succ', 'id_local', 'id_datetime', 'id_moment', 'releve_temp', 'tmp_ok', 'releve_hum', 'hum_ok', 'releve_comment'];
 
-
     // Définit la connexion à utiliser (si différente de la connexion par défaut)
     protected $connection = 'succursales';
 
-    // Autres attributs et méthodes du modèle...
+    // Définition de la relation avec le modèle Succursale
+    public function succursale()
+    {
+        return $this->belongsTo(Succursale::class, 'id_succ', 'id');
+    }
+    
+    // Définition de la relation avec le modèle Local
+    public function local()
+    {
+        return $this->belongsTo(Local::class, 'id_local', 'id');
+    }
 }
