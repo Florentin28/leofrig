@@ -168,6 +168,7 @@ th {
 }
 
 
+
     </style>
 </head>
 <body>
@@ -227,6 +228,39 @@ th {
 
     <!-- Bouton d'ajout -->
 <a href="{{ route('nouveau_releve') }}" class="ajout-btn">Ajouter du contenu</a>
+
+<!-- Affichage de la pagination -->
+@if ($releves->lastPage() > 1)
+    <div class="pagination">
+        <!-- Bouton "Page précédente" -->
+        @if ($releves->onFirstPage())
+            <span>&laquo;</span>
+        @else
+            <a href="{{ $releves->previousPageUrl() }}" rel="prev">&laquo;</a>
+        @endif
+
+        <!-- Boutons de pagination -->
+        @for ($i = 1; $i <= $releves->lastPage(); $i++)
+            <!-- Affichage uniquement si une seule page est disponible ou si la page actuelle est la première, la dernière ou est à deux pages de distance -->
+            @if ($releves->lastPage() == 1 || $i == 1 || $i == $releves->currentPage() || $i == $releves->lastPage() || abs($releves->currentPage() - $i) <= 2)
+                <!-- Bouton de la page actuelle -->
+                @if ($i == $releves->currentPage())
+                    <span>{{ $i }}</span>
+                @else
+                    <!-- Liens vers les autres pages -->
+                    <a href="{{ $releves->url($i) }}">{{ $i }}</a>
+                @endif
+            @endif
+        @endfor
+
+        <!-- Bouton "Page suivante" -->
+        @if ($releves->hasMorePages())
+            <a href="{{ $releves->nextPageUrl() }}" rel="next">&raquo;</a>
+        @else
+            <span>&raquo;</span>
+        @endif
+    </div>
+@endif
 
 
 

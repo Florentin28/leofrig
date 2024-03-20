@@ -15,9 +15,9 @@ class HomeController extends Controller
 
         // Filtrer les données en fonction du filtre
         if ($filter === 'aujourd_hui') {
-            $releves = Releve::whereDate('id_datetime', now())->orderBy('id_datetime', 'desc')->paginate(10);
+            $releves = Releve::whereDate('id_datetime', now())->orderBy('id_datetime', 'desc')->paginate(100);
         } else {
-            $releves = Releve::orderBy('id_datetime', 'desc')->paginate(10);
+            $releves = Releve::orderBy('id_datetime', 'desc')->paginate(100);
         }
 
         // Retourner la vue avec les données filtrées

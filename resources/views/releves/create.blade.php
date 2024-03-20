@@ -138,13 +138,16 @@
         display: none; /* Masque la boîte modale par défaut */
         position: fixed;
         z-index: 1;
-        left: 0;
+        left: 0;   
         top: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent pour obscurcir le reste de la page */
         justify-content: center;
         align-items: center;
+        z-index: 1001; /* Assurez-vous que le modal a un z-index plus grand que celui du bouton Accueil */
+        
+
     }
 
     .modal-content {

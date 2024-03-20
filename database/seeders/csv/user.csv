@@ -1,0 +1,63 @@
+name,email,role,password,id_succ
+Admin,admin@example.com,admin,password,2
+User,user@example.com,user,password,2
+Adolphe Max,leonidas.max@leonidas.be,user,password,2
+Anspach,leonidas.anspach@leonidas.be,user,password,3
+Fripiers,leonidas.fripiers@leonidas.be,user,password,6
+Oostende,leonidas.oostende@leonidas.be,user,password,9
+Bascule,leonidas.bascule@leonidas.be,user,password,10
+Beurre,leonidas.beurre@leonidas.be,user,password,11
+Ixelles (Stassart),leonidas.ixelles@leonidas.be,user,password,12
+Keyzerlei,leonidas.keyzerlei@leonidas.be,user,password,13
+Waterloo,leonidas.waterloo@leonidas.be,user,password,14
+Vilvoorde,leonidas.vilvoorde@leonidas.be,user,password,17
+Georges-Henri,leonidas.woluwe@leonidas.be,user,password,18
+Jette,leonidas.jette@leonidas.be,user,password,24
+Xavier de Bue,leonidas.xavierdebue@leonidas.be,user,password,25
+Wijnegem,leonidas.wijnegem@leonidas.be,user,password,27
+Métro Rogier,leonidas.rogier@leonidas.be,user,password,28
+Ravenstein,leonidas.ravenstein@leonidas.be,user,password,29
+Métro Midi,leonidas.midi@leonidas.be,user,password,31
+Métro Louise,leonidas.louise@leonidas.be,user,password,32
+Schuman,leonidas.schuman@leonidas.be,user,password,33
+Toison d'Or,leonidas.toisondor@leonidas.be,user,password,40
+Madou,leonidas.madou@leonidas.be,user,password,45
+Keyserlei 28,leonidas.keyserlei28@leonidas.be,user,password,46
+Mint,leonidas.mint@leonidas.be,user,password,47
+Petits Carreaux,leonidas.pariscarreaux@leonidas.com,user,password,48
+Forum des Halles,leonidas.parisforumhalles@leonidas.com,user,password,51
+Etuve,Leonidas.Etuve@leonidas.be,user,password,52
+Galerie du Roi,Leonidas.GalerieduRoi@leonidas.be,user,password,53
+Kraainem,leonidas.kraainem@leonidas.be,user,password,54
+Euralille,leonidas.euralille@leonidas.com,user,password,55
+Place Stéphanie,leonidas.placestephanie@leonidas.be,user,password,56
+Tongres,leonidas.tongres@leonidas.be,user,password,64
+Boulogne,leonidas.boulogne@leonidas.com,user,password,65
+Villeneuve d'Ascq,leonidas.v2@leonidas.com,user,password,66
+Valenciennes Sud,leonidas.valenciennessud@leonidas.com,user,password,67
+Gare Centrale,leonidas.garecentrale@leonidas.be,user,password,69
+Galerie Lousie,leonidas.galerielouise@leonidas.be,user,password,70
+Woluwe Shopping Center,leonidas.woluweshoppingcenter@leonidas.be,user,password,72
+Rue Neuve 5,leonidas.rueneuve5@leonidas.be,user,password,73
+Sablon,leonidas.sablon@leonidas.be,user,password,74
+Noyelles-Godault,leonidas.noyelles@leonidas.com,user,password,79
+Beauvais,leonidas.beauvais@leonidas.com,user,password,81
+Lille Rue Neuve,leonidas.lillereuve@leonidas.com,user,password,83
+Rue Neuve,leonidas.rueneuve@leonidas.be,user,password,84
+Lille Wazemmes,leonidas.lillewazemmes@leonidas.com,user,password,85
+Lille Faidherbe,leonidas.lille@leonidas.com,user,password,86
+Flagey,leonidas.flagey@leonidas.be,user,password,89
+Grande Synthe,leonidas.grandesynthe@leonidas.com,user,password,90
+Calais,leonidas.calais@leonidas.com,user,password,91
+Rouen Saint Sever,leonidas.saintsever@leonidas.com,user,password,92
+Petite Forêt,leonidas.petiteforet@leonidas.com,user,password,93
+Froissart,leonidas.froissart@leonidas.be,user,password,94
+Neuss,leonidas.neuss@leonidas.com,user,password,301
+Essen,leonidas.essen@leonidas.com,user,password,302
+Cologne,leonidas.Cologne@leonidas.com,user,password,304
+SJW,leonidas.sjw@leonidas.com,user,password,402
+Ealing,leonidas.ealing@leonidas.com,user,password,403
+Rotterdam - Markthal,leonidas.rotterdam@leonidas.com,user,password,501
+Utrecht,leonidas.utrecht@leonidas.com,user,password,502
+Groenplaats,chocolatescafe.groenplaats@leonidas.be,user,password,701
+Z_TEST,ict.support@leonidas.be,user,password,999
