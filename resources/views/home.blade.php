@@ -144,6 +144,30 @@ th {
     background-color: green;
 }
 
+.filter-container {
+    margin-bottom: 20px; /* Espacement en bas */
+}
+
+.filter-link {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px; /* Espacement entre les boutons */
+}
+
+.filter-link:hover {
+    background-color: #0056b3;
+}
+
+.filter-link.active {
+    background-color: #0056b3; /* Couleur de fond active */
+}
+
+
     </style>
 </head>
 <body>
@@ -160,6 +184,14 @@ th {
             {{ session('success') }}
         </div>
     @endif
+
+    <!-- Choix entre historique et aujourd'hui -->
+    <div class="filter-container">
+    <a href="{{ route('home', ['filter' => 'historique']) }}" class="filter-link {{ request('filter') == 'historique' ? 'active' : '' }}">Historique</a>
+    <a href="{{ route('home', ['filter' => 'aujourd_hui']) }}" class="filter-link {{ request('filter') == 'aujourd_hui' ? 'active' : '' }}">Aujourd'hui</a>
+</div>
+
+
 
     <!-- Affichage des données de la table "releves" -->
     <div class="table-container">
@@ -199,9 +231,6 @@ th {
 
 
 
-    <!-- Pagination -->
-    <div class="pagination">
-        {{ $releves->links() }}
-    </div>
+ 
 </body>
 </html>

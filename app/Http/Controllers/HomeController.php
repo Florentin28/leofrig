@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Releve;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Récupérer les données de relevé paginées à partir du modèle Releve avec 10 éléments par page
-        $releves = Releve::orderBy('id_datetime', 'desc')->paginate(10);
+        // Récupérer le filtre de la requête GET
+        $filter = $request->query('filter');
 
-        // Retourner la vue "home" en passant les données récupérées
+        // Filtrer les données en fonction du filtre
+        if ($filter === 'aujourd_hui') {
+            $releves = Releve::whereDate('id_datetime', now())->orderBy('id_datetime', 'desc')->paginate(10);
+        } else {
+            $releves = Releve::orderBy('id_datetime', 'desc')->paginate(10);
+        }
+
+        // Retourner la vue avec les données filtrées
         return view('home', compact('releves'));    
     }
 }

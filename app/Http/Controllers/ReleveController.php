@@ -14,9 +14,7 @@ class ReleveController extends Controller
 
     public function index()
     {
-        // Récupérer les données de relevé paginées à partir du modèle Releve avec 10 éléments par page
-        $releves = Releve::orderBy('id_datetime', 'desc')->paginate(10);
-
+ 
         // Retourner la vue "home" en passant les données récupérées
         return view('home', compact('releves'));    
     }
@@ -99,6 +97,10 @@ public function store(Request $request)
     return redirect()->route('home')->with('success', 'Le relevé a été ajouté avec succès.');
 }
 
-
+public function destroy(Releve $releve)
+{
+    $releve->delete();
+    return redirect()->back()->with('success', 'Le relevé a été supprimé avec succès.');
+}
 
 }

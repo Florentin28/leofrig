@@ -68,6 +68,21 @@
         background-color: #0056b3;
     }
 
+    .btn {
+        margin-top: 20px;
+        padding: 12px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
     .table-container {
         max-height: 400px; /* Limite la hauteur de la table */
         overflow-y: auto; /* Ajoute une barre de défilement verticale */
@@ -115,18 +130,78 @@
 
     .temperature.tmp-ok-1,
     .humidity.hum-ok-1 {
-        background-color: green
+        background-color: green;
     }
+
+    /* Styles pour la boîte modale */
+    .modal {
+        display: none; /* Masque la boîte modale par défaut */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent pour obscurcir le reste de la page */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .button-container {
+        text-align: center;
+    }
+
+    button {
+        margin: 0 10px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-home {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 1000; /* Assurez-vous que le bouton reste au-dessus de tout le contenu */
+}
+
+.btn-home:hover {
+    background-color: #0056b3;
+}
+
 </style>
+
 
 </head>
 <body>
+<a href="{{ route('home') }}" class="btn-home">Accueil</a>
+
     <div>
         <h1>Ajouter un relevé</h1>
 
         <!-- Formulaire de création d'un relevé -->
         <div class="form-container">
-            <form action="{{ route('releves.store') }}" method="POST">
+        <form id="myForm" action="{{ route('releves.store') }}" method="POST">
                 @csrf
 
                 <!-- Champs du formulaire -->
@@ -176,12 +251,37 @@
     <label for="releve_hum">Taux d'humidité :</label>
     <input type="number" name="releve_hum" id="releve_hum" required min="0" max="100">
 </div>
-
+ 
 
                 <div>
     <label for="releve_comment">Commentaire :</label>
     <textarea name="releve_comment" id="releve_comment" maxlength="100"></textarea>
 </div>
+
+
+
+<!-- Structure de la boîte modale -->
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <p>Êtes-vous sûr d'ajouter ce relevé ?</p>
+    <div id="modal-info">
+      <!-- Infos à confirmer -->
+      <p>Date: <span id="confirmDate"></span></p>
+      <p>Local: <span id="confirmLocal"></span></p>
+      <p>Moment de la journée: <span id="confirmMoment"></span></p>
+      <p>Température: <span id="confirmTemp"></span></p>
+      <p>Taux d'humidité: <span id="confirmHum"></span></p>
+      <p>Commentaire: <span id="confirmComment"></span></p>
+    </div>
+    <div class="button-container">
+      <!-- Bouton "Non" pour fermer la boîte modale -->
+      <button id="closeModal">Non</button>
+      <button id="confirmYes">Oui</button>
+    </div>
+  </div>
+</div>
+
+
 
 
                 <!-- Bouton de soumission -->
@@ -190,37 +290,106 @@
         </div>
     </div>
 
-    <!-- Tableau des données de la base de données -->
-    <div class="table-container">
-        <h2>Liste des relevés</h2>
-        <table>
-            <thead>
+    <!-- Ajoutez ce code à la vue create.blade.php -->
+<a href="{{ route('verifier-releves') }}" class="btn btn-primary">Vérifier les relevés</a>
+
+
+<!-- Tableau des données de la base de données -->
+<div class="table-container">
+    <h2>Liste des relevés</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Numéro</th>
+                <th>Nom du Succursale</th>
+                <th>Description du Local</th>
+                <th>Date et heure</th>
+                <th>Moment de la journée</th>
+                <th>Température</th>
+                <th>Taux d'humidité</th>
+                <th>Commentaire</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($releves as $releve)
                 <tr>
-                    <th>Numéro</th>
-                    <th>ID Succ</th>
-                    <th>ID Local</th>
-                    <th>ID Datetime</th>
-                    <th>ID Moment</th>
-                    <th>Relevé Temp</th>
-                    <th>Relevé Hum</th>
-                    <th>Relevé Comment</th>
+                    <td>{{ $releve->id }}</td>
+                    <td>{{ $releve->succursale->Nom }}</td>
+                    <td>{{ $releve->local->description }}</td>
+                    <td>{{ $releve->id_datetime }}</td>
+                    <td>{{ $releve->id_moment }}</td>
+                    <td class="temperature tmp-ok-{{ $releve->tmp_ok }}">{{ $releve->releve_temp }}</td>
+                    <td class="humidity hum-ok-{{ $releve->hum_ok }}">{{ $releve->releve_hum }}</td>
+                    <td>{{ $releve->releve_comment }}</td>
+                    <td>
+                    <form action="{{ route('releves.destroy', $releve) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce relevé ?')">Supprimer</button>
+            </form>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach($releves as $releve)
-                    <tr>
-                        <td>{{ $releve->id }}</td>
-                        <td>{{ $releve->succursale->Nom }}</td>
-                        <td>{{ $releve->local->description }}</td>
-                        <td>{{ $releve->id_datetime }}</td>
-                        <td>{{ $releve->id_moment }}</td>
-                        <td class="temperature tmp-ok-{{ $releve->tmp_ok }}">{{ $releve->releve_temp }}</td>
-                        <td class="humidity hum-ok-{{ $releve->hum_ok }}">{{ $releve->releve_hum }}</td>
-                        <td>{{ $releve->releve_comment }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>
+
+<script>
+// Fonction pour fermer la boîte modale
+function closeModal() {
+  console.log("Fermeture de la boîte modale");
+  document.getElementById("myModal").style.display = "none";
+}
+
+// Récupérer la valeur de la date saisie dans le formulaire
+const date = document.getElementById("id_datetime").value;
+// Afficher la date dans le modal
+document.getElementById("confirmDate").textContent = "Date : " + date;
+
+// Fonction pour afficher la boîte modale avec les informations du relevé
+function displayModal() {
+  // Récupérer les valeurs saisies dans le formulaire
+  const date = document.getElementById("id_datetime").value;
+  const local = document.getElementById("id_local").value;
+  const moment = document.querySelector('input[name="id_moment"]:checked').value;
+  const temperature = document.getElementById("releve_temp").value;
+  const humidite = document.getElementById("releve_hum").value;
+  const commentaire = document.getElementById("releve_comment").value;
+  // Formater la date au format jour/mois/année
+  const formattedDate = new Date(date).toLocaleDateString('fr-FR');
+  // Afficher les informations dans la boîte modale
+  document.getElementById("confirmDate").textContent = formattedDate;
+  document.getElementById("confirmLocal").textContent = local;
+  document.getElementById("confirmMoment").textContent = moment;
+  document.getElementById("confirmTemp").textContent = temperature;
+  document.getElementById("confirmHum").textContent = humidite;
+  document.getElementById("confirmComment").textContent = commentaire;
+  // Afficher la boîte modale
+  document.getElementById("myModal").style.display = "block";
+}
+
+// Afficher la boîte modale lorsque le bouton "Ajouter Relevé" est cliqué
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Empêcher la soumission du formulaire par défaut
+  console.log("Affichage de la boîte modale");
+  displayModal();
+});
+
+// Ajouter un écouteur d'événement pour le clic sur le bouton "Non"
+document.getElementById("closeModal").addEventListener("click", function(event) {
+  console.log("Bouton 'Non' cliqué");
+  closeModal(); // Appeler la fonction pour fermer la boîte modale
+  event.preventDefault(); // Empêcher la soumission du formulaire
+});
+
+// Ajouter un écouteur d'événement pour le clic sur le bouton "Oui"
+document.getElementById("confirmYes").addEventListener("click", function() {
+  console.log("Bouton 'Oui' cliqué");
+  closeModal(); // Appeler la fonction pour fermer la boîte modale
+  document.getElementById("myForm").submit();
+});
+</script>

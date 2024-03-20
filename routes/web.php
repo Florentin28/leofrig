@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReleveController; 
+use App\Http\Controllers\VerificationController;
+
 
 
 
@@ -49,6 +51,11 @@ Route::middleware('auth')->group(function () {
 // Route pour l'ajout de données dans la base de données
 Route::get('/nouveau-releve', [ReleveController::class, 'create'])->name('nouveau_releve');
 Route::post('/releves', [ReleveController::class, 'store'])->name('releves.store');
+
+
+
+Route::get('/verifier-releves', [VerificationController::class, 'index'])->name('verifier-releves');
+Route::delete('/releves/{releve}', [ReleveController::class, 'destroy'])->name('releves.destroy');
 
 
 
