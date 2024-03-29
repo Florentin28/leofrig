@@ -32,7 +32,11 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Route vers la page admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.admin');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+Route::get('/admin/succursale/{id}', [AdminController::class, 'showSuccursale'])->name('admin.show');
+
+
 
 
 
@@ -56,6 +60,12 @@ Route::post('/releves', [ReleveController::class, 'store'])->name('releves.store
 
 Route::get('/verifier-releves', [VerificationController::class, 'index'])->name('verifier-releves');
 Route::delete('/releves/{releve}', [ReleveController::class, 'destroy'])->name('releves.destroy');
+
+Route::get('/releves-effectues', [ReleveController::class, 'relevesEffectues'])->name('releves_effectues');
+
+
+
+Route::get('/emplacements-a-relever', [ReleveController::class, 'emplacementsARelever'])->name('emplacements.relever');
 
 
 

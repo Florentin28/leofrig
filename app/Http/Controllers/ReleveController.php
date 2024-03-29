@@ -9,6 +9,7 @@ use App\Models\User; // Importez le modèle User
 use App\Models\Local;
 use App\Models\TypeLocal;
 
+
 class ReleveController extends Controller
 {
 
@@ -20,9 +21,9 @@ class ReleveController extends Controller
     }
 
 
-    public function create()
+    public function create() 
     {
-        // Récupérer l'utilisateur connecté
+        // Récupérer l'utilisateur connecté 
         $user = auth()->user();
     
         // Vérifier si l'utilisateur est connecté et s'il a une succursale associée
@@ -42,7 +43,33 @@ class ReleveController extends Controller
     }
     
 
+
+      public function relevesEffectues()
+    {
+        try {
+            // Récupérer les relevés effectués depuis la base de données
+            $releves_effectues = Releve::all(); // Ou utilisez une requête pour récupérer les relevés nécessaires
     
+            // Passer les relevés effectués à la vue
+            return view('admin.releves_effectues', compact('releves_effectues')); // Vue renommée à "releves_effectues.blade.php"
+        } catch (\Exception $e) {
+            // Gérer les erreurs
+            return view('admin.releves_effectues')->with('error', 'Une erreur est survenue lors de la récupération des données.');
+        }
+    }
+    
+
+    public function emplacementsARelever()
+    {
+        // Récupérer les locaux à relever depuis le modèle Local
+        $locaux = Local::all();
+    
+        // Retourner la vue avec les locaux récupérés
+        return view('admin.emplacements_a_relever', compact('locaux'));
+    }
+    
+
+
 public function store(Request $request)
 {
     // Valider les données soumises par le formulaire

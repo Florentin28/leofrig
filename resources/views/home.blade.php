@@ -200,13 +200,13 @@ th {
             <thead>
                 <tr>
                     <th>Numéro</th>
-                    <th>ID Succ</th>
-                    <th>ID Local</th>
-                    <th>ID Datetime</th>
-                    <th>ID Moment</th>
-                    <th>Relevé Temp</th>
-                    <th>Relevé Hum</th>
-                    <th>Relevé Comment</th>
+                    <th>Succursale</th>
+                    <th>Local</th>
+                    <th>Date</th>
+                    <th>Moment</th>
+                    <th>Température</th>
+                    <th>Humidité</th>
+                    <th>Commentaire</th>
                 </tr>
             </thead>
             <tbody>
