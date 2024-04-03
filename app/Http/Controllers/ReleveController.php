@@ -28,11 +28,16 @@ class ReleveController extends Controller
     
         // Vérifier si l'utilisateur est connecté et s'il a une succursale associée
         if ($user && $user->succursale) {
+            // Récupérer la succursale associée à l'utilisateur connecté
+            $succursaleId = $user->succursale->id;
+    
             // Récupérer les locaux associés à la succursale de l'utilisateur connecté
             $locaux = $user->succursale->locaux;
     
-            // Récupérer tous les relevés triés par date pour affichage dans la vue
-            $releves = Releve::orderBy('id_datetime', 'desc')->get();
+            // Récupérer les relevés associés à la succursale de l'utilisateur connecté
+            $releves = Releve::where('id_succ', $succursaleId)
+                        ->orderBy('id_datetime', 'desc')
+                        ->get();
     
             // Retourner la vue du formulaire d'ajout de relevé en passant les données récupérées
             return view('releves.create', compact('user', 'locaux', 'releves'));
@@ -41,6 +46,8 @@ class ReleveController extends Controller
             return redirect()->back()->with('error', 'Veuillez vous connecter pour accéder à cette page.');
         }
     }
+    
+    
     
 
 
@@ -79,7 +86,7 @@ public function store(Request $request)
         'id_moment' => 'required',
         'releve_temp' => 'required|numeric', // Assurez-vous que la température est un nombre
         'releve_hum' => 'required|numeric', // Assurez-vous que l'humidité est un nombre
-        'releve_comment' => 'nullable|max:250', // Limiter le commentaire à 250 caractères
+        'releve_comment' => 'nullable|max:100', // Limiter le commentaire à 250 caractères
     ]);
 
     // Récupérer l'utilisateur connecté

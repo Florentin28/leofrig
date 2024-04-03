@@ -70,6 +70,13 @@ class User extends Authenticatable
         return $this->belongsTo(Succursale::class, 'id_succ');
     }
 
+    public function isConsultation()
+{
+    return $this->role === 'consultation';
+}
+
+
+
     public function getRedirectRoute()
 {
     return route('home');

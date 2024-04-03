@@ -23,5 +23,11 @@ class Succursale extends Model
 }
 
 
+
+public function releves()
+{
+    return $this->hasMany(Releve::class);
+}
+
     // Autres attributs et méthodes du modèle...
 }

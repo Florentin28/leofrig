@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReleveController; 
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\ConsultationController;
+
 
 
 
@@ -65,8 +67,13 @@ Route::get('/releves-effectues', [ReleveController::class, 'relevesEffectues'])-
 
 
 
-Route::get('/emplacements-a-relever', [ReleveController::class, 'emplacementsARelever'])->name('emplacements.relever');
+Route::get('/emplacements-a-relever', [ReleveController::class, 'emplacementsARelever'])->name('emplacements_a_relever');
 
+
+Route::get('/consultation', [ConsultationController::class, 'index'])->name('consultation.index');
+
+Route::get('/consultation/{succursale}', [ConsultationController::class, 'show'])->name('consultation.succursale');
+Route::get('/consultation/{succursale}', [ConsultationController::class, 'show'])->name('consultation.show');
 
 
 // Include les routes d'authentification

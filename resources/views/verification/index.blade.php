@@ -47,10 +47,38 @@
         .btn-home:hover {
             background-color: #0056b3;
         }
+
+        /* Styles pour le bouton de soumission */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
     </style>
 </head>
 <body>
     <h1>Vérification des relevés</h1>
+
+    <form method="GET" action="{{ route('verifier-releves') }}">
+        @csrf
+
+        <!-- Champ de sélection de la date -->
+        <div>
+            <label for="date">Choisir une date :</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button type="submit">Vérifier les relevés</button>
+    </form>
 
     <table>
         <thead>
@@ -73,6 +101,6 @@
         </tbody>
     </table>
 
-    <a href="{{ route('nouveau_releve') }}" class="btn-home">Retourner à la page Create</a>
+    <a href="{{ route('nouveau_releve') }}" class="btn-home">Retourner à la page d'ajout de relevés</a>
 </body>
 </html>

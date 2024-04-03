@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leofrig - Accueil</title>
     <style>
-
 /* Styles CSS existants */
 body {
     font-family: Arial, sans-serif;
@@ -14,7 +13,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #f2f2f2; /* Gris clair */
 }
 
 h1 {
@@ -23,18 +22,20 @@ h1 {
 }
 
 .logout-btn {
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 12px 24px;
+    background-color: #dc3545; /* Rouge */
     color: #fff;
-    border: none;
-    border-radius: 5px;
+    border: 2px solid #dc3545; /* Bordure rouge */
+    border-radius: 8px;
     cursor: pointer;
     text-decoration: none;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transition fluide */
 }
 
 .logout-btn:hover {
-    background-color: #0056b3;
+    background-color: #c82333; /* Rouge plus foncé au survol */
+    border-color: #c82333; /* Bordure rouge plus foncée au survol */
 }
 
 .table-container {
@@ -51,9 +52,9 @@ table {
 
 /* Styles pour les cellules de tableau */
 td {
-    border: 1px solid #ddd;
+    border: 1px solid black;
     padding: 8px;
-            text-align: center;
+    text-align: center;
 }
 
 /* Styles pour les titres de colonnes */
@@ -63,9 +64,6 @@ th {
     background-color: #f2f2f2;
     margin-top: 5px; /* Compenser l'écart lors du défilement rapide */
 }
-
-
-
 
 .pagination {
     display: flex;
@@ -86,52 +84,67 @@ th {
 
 .pagination a:hover {
     background-color: #0056b3;
-
 }
 
-
 .alert-success {
-        background-color: #d4edda;
-        color: #155724;
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 20px; /* Espacement en haut du message */
-        width: 80%; /* Ajout de la largeur */
-        text-align: center;
-    }
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px; /* Espacement en haut du message */
+    width: 80%; /* Ajout de la largeur */
+    text-align: center;
+}
 
-    /* Styles pour le bouton d'ajout */
-    .ajout-btn {
-        padding: 10px 20px;
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-decoration: none;
-        margin-top: 20px; /* Espacement en haut */
-        display: inline-block;
-    }
+/* Styles pour le bouton de déconnexion */
+.logout-btn {
+    padding: 10px 20px;
+    background-color: #dc3545; /* Rouge */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
 
-    .ajout-btn:hover {
-        background-color: #218838;
-    }
+.logout-btn:hover {
+    background-color: #c82333; /* Rouge plus foncé au survol */
+}
 
-    .temperature {
-            color: inherit; /* Couleur de texte par défaut */
-            font-weight: 700; /* Légèrement plus gras */
+/* Styles pour le bouton d'ajout */
+.ajout-btn {
+    padding: 12px 24px;
+    background-color: #28a745; /* Vert */
+    color: #fff;
+    border: 2px solid #28a745; /* Bordure verte */
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px; /* Espacement en haut */
+    display: inline-block;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transition fluide */
+}
 
-        }
+.ajout-btn:hover {
+    background-color: #218838; /* Vert plus foncé au survol */
+    border-color: #218838; /* Bordure verte plus foncée au survol */
+}
 
-        .temperature.tmp-ok-0 {
-            background-color: red; /* Fond rouge pour les températures non valides */
-        }
+.temperature {
+    color: inherit; /* Couleur de texte par défaut */
+    font-weight: 700; /* Légèrement plus gras */
+}
 
-        .temperature.tmp-ok-1 {
-            background-color: green; /* Fond vert pour les températures valides */
-        }
+.temperature.tmp-ok-0 {
+    background-color: red; /* Fond rouge pour les températures non valides */
+}
 
-        .humidity {
+.temperature.tmp-ok-1 {
+    background-color: green; /* Fond vert pour les températures valides */
+}
+
+.humidity {
     color: inherit;
     font-weight: 700;
 }
@@ -145,7 +158,8 @@ th {
 }
 
 .filter-container {
-    margin-bottom: 20px; /* Espacement en bas */
+    margin-top: 20px;
+    margin-bottom: 20px; /* Ajout d'espace en bas des boutons */
 }
 
 .filter-link {
@@ -167,8 +181,6 @@ th {
     background-color: #0056b3; /* Couleur de fond active */
 }
 
-
-
     </style>
 </head>
 <body>
@@ -179,8 +191,8 @@ th {
         <button type="submit" class="logout-btn">Déconnexion</button>
     </form>
     
-     <!-- Affichage du message de succès -->
-     @if(session('success'))
+    <!-- Affichage du message de succès -->
+    @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
@@ -188,11 +200,9 @@ th {
 
     <!-- Choix entre historique et aujourd'hui -->
     <div class="filter-container">
-    <a href="{{ route('home', ['filter' => 'historique']) }}" class="filter-link {{ request('filter') == 'historique' ? 'active' : '' }}">Historique</a>
-    <a href="{{ route('home', ['filter' => 'aujourd_hui']) }}" class="filter-link {{ request('filter') == 'aujourd_hui' ? 'active' : '' }}">Aujourd'hui</a>
-</div>
-
-
+        <a href="{{ route('home', ['filter' => 'historique']) }}" class="filter-link {{ request('filter') == 'historique' ? 'active' : '' }}">Historique</a>
+        <a href="{{ route('home', ['filter' => 'aujourd_hui']) }}" class="filter-link {{ request('filter') == 'aujourd_hui' ? 'active' : '' }}">Aujourd'hui</a>
+    </div>
 
     <!-- Affichage des données de la table "releves" -->
     <div class="table-container">
@@ -227,44 +237,39 @@ th {
     </div>
 
     <!-- Bouton d'ajout -->
-<a href="{{ route('nouveau_releve') }}" class="ajout-btn">Ajouter du contenu</a>
+    <a href="{{ route('nouveau_releve') }}" class="ajout-btn">Ajouter du contenu</a>
 
-<!-- Affichage de la pagination -->
-@if ($releves->lastPage() > 1)
-    <div class="pagination">
-        <!-- Bouton "Page précédente" -->
-        @if ($releves->onFirstPage())
-            <span>&laquo;</span>
-        @else
-            <a href="{{ $releves->previousPageUrl() }}" rel="prev">&laquo;</a>
-        @endif
-
-        <!-- Boutons de pagination -->
-        @for ($i = 1; $i <= $releves->lastPage(); $i++)
-            <!-- Affichage uniquement si une seule page est disponible ou si la page actuelle est la première, la dernière ou est à deux pages de distance -->
-            @if ($releves->lastPage() == 1 || $i == 1 || $i == $releves->currentPage() || $i == $releves->lastPage() || abs($releves->currentPage() - $i) <= 2)
-                <!-- Bouton de la page actuelle -->
-                @if ($i == $releves->currentPage())
-                    <span>{{ $i }}</span>
-                @else
-                    <!-- Liens vers les autres pages -->
-                    <a href="{{ $releves->url($i) }}">{{ $i }}</a>
-                @endif
+    <!-- Affichage de la pagination -->
+    @if ($releves->lastPage() > 1)
+        <div class="pagination">
+            <!-- Bouton "Page précédente" -->
+            @if ($releves->onFirstPage())
+                <span>&laquo;</span>
+            @else
+                <a href="{{ $releves->previousPageUrl() }}" rel="prev">&laquo;</a>
             @endif
-        @endfor
 
-        <!-- Bouton "Page suivante" -->
-        @if ($releves->hasMorePages())
-            <a href="{{ $releves->nextPageUrl() }}" rel="next">&raquo;</a>
-        @else
-            <span>&raquo;</span>
-        @endif
-    </div>
-@endif
+            <!-- Boutons de pagination -->
+            @for ($i = 1; $i <= $releves->lastPage(); $i++)
+                <!-- Affichage uniquement si une seule page est disponible ou si la page actuelle est la première, la dernière ou est à deux pages de distance -->
+                @if ($releves->lastPage() == 1 || $i == 1 || $i == $releves->currentPage() || $i == $releves->lastPage() || abs($releves->currentPage() - $i) <= 2)
+                    <!-- Bouton de la page actuelle -->
+                    @if ($i == $releves->currentPage())
+                        <span>{{ $i }}</span>
+                    @else
+                        <!-- Liens vers les autres pages -->
+                        <a href="{{ $releves->url($i) }}">{{ $i }}</a>
+                    @endif
+                @endif
+            @endfor
 
-
-
-
- 
+            <!-- Bouton "Page suivante" -->
+            @if ($releves->hasMorePages())
+                <a href="{{ $releves->nextPageUrl() }}" rel="next">&raquo;</a>
+            @else
+                <span>&raquo;</span>
+            @endif
+        </div>
+    @endif
 </body>
 </html>
