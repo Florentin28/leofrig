@@ -127,8 +127,8 @@ th {
 }
 
 .ajout-btn:hover {
-    background-color: #218838; /* Vert plus foncé au survol */
-    border-color: #218838; /* Bordure verte plus foncée au survol */
+    background-color: darkgreen; /* Vert plus foncé au survol */
+    border-color: darkgreen; /* Bordure verte plus foncée au survol */
 }
 
 .temperature {

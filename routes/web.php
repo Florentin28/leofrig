@@ -9,10 +9,6 @@ use App\Http\Controllers\ReleveController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\ConsultationController;
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,17 +26,24 @@ Route::redirect('/', '/login');
 // Route vers la page de connexion
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-// Route vers la page principale après la connexion
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Routes pour la partie Admin
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/succursale/{id}', [AdminController::class, 'showSuccursale'])->name('admin.show');
+    // Permettre aux administrateurs d'accéder à la page d'accueil
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
 
-// Route vers la page admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// Routes pour la partie Consultation
+Route::middleware(['auth', 'role:consultation'])->group(function () {
+    Route::get('/consultation', [ConsultationController::class, 'index'])->name('consultation.index');
+    Route::get('/consultation/{succursale}', [ConsultationController::class, 'show'])->name('consultation.show');
+});
 
-Route::get('/admin/succursale/{id}', [AdminController::class, 'showSuccursale'])->name('admin.show');
-
-
-
-
+// Routes pour la partie Utilisateur (User)
+Route::middleware(['auth', 'role:user'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
 
 // Route vers le tableau de bord
 Route::get('/dashboard', function () {
@@ -58,23 +61,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/nouveau-releve', [ReleveController::class, 'create'])->name('nouveau_releve');
 Route::post('/releves', [ReleveController::class, 'store'])->name('releves.store');
 
-
-
 Route::get('/verifier-releves', [VerificationController::class, 'index'])->name('verifier-releves');
 Route::delete('/releves/{releve}', [ReleveController::class, 'destroy'])->name('releves.destroy');
 
 Route::get('/releves-effectues', [ReleveController::class, 'relevesEffectues'])->name('releves_effectues');
 
-
-
 Route::get('/emplacements-a-relever', [ReleveController::class, 'emplacementsARelever'])->name('emplacements_a_relever');
-
-
-Route::get('/consultation', [ConsultationController::class, 'index'])->name('consultation.index');
-
-Route::get('/consultation/{succursale}', [ConsultationController::class, 'show'])->name('consultation.succursale');
-Route::get('/consultation/{succursale}', [ConsultationController::class, 'show'])->name('consultation.show');
-
 
 // Include les routes d'authentification
 require __DIR__.'/auth.php';

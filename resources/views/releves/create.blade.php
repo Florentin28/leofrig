@@ -63,7 +63,7 @@
     /* Styles pour le bouton de soumission */
     button[type="submit"] {
         padding: 12px 20px;
-        background-color: #007bff;
+        background-color: #28a745; /* Vert */
         color: #fff;
         border: none;
         border-radius: 5px;
@@ -72,7 +72,7 @@
     }
 
     button[type="submit"]:hover {
-        background-color: #0056b3;
+        background-color: darkgreen;
     }
 
     .btn {
@@ -157,24 +157,60 @@
 
     /* Styles pour la boîte modale */
     .modal {
-        display: none; /* Masque la boîte modale par défaut */
-        position: fixed;
-        z-index: 1;
-        left: 0;   
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.4); /* Fond semi-transparent pour obscurcir le reste de la page */
-        justify-content: center;
-        align-items: center;
-        z-index: 1001; /* Assurez-vous que le modal a un z-index plus grand que celui du bouton Accueil */
-    }
+    display: none; /* Masque la boîte modale par défaut */
+    position: fixed;
+    z-index: 1;
+    left: 0;   
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour obscurcir le reste de la page */
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
+    z-index: 1001; /* Assurez-vous que le modal a un z-index plus grand que celui du bouton Accueil */
+}
+
+
 
     .modal-content {
         background-color: #fefefe;
         padding: 20px;
         border-radius: 5px;
+        text-align: center;
     }
+
+    /* Bouton Oui */
+#confirmYes {
+    background-color: green; /* Fond vert */
+    color: white; /* Texte blanc */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Ajout de l'animation de transition */
+}
+
+/* Au survol du bouton Oui */
+#confirmYes:hover {
+    background-color: #0a8f0a; /* Variation de couleur au survol */
+}
+
+/* Bouton Non */
+#closeModal {
+    background-color: red; /* Fond rouge */
+    color: white; /* Texte blanc */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Ajout de l'animation de transition */
+}
+
+/* Au survol du bouton Non */
+#closeModal:hover {
+    background-color: #b30000; /* Variation de couleur au survol */
+}
+
 
     .button-container {
         text-align: center;
@@ -218,6 +254,23 @@
     .btn-home:hover {
         background-color: #0056b3;
     }
+
+    /* Styles pour les boutons de suppression */
+button.delete-button {
+    background-color: red;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button.delete-button:hover {
+    background-color: darkred;
+}
+
+    
 
     </style>
 </head>
@@ -330,12 +383,13 @@
             <td class="humidity hum-ok-{{ $releve->hum_ok }}">{{ $releve->releve_hum }}</td>
             <td>{{ $releve->releve_comment }}</td>
             <td>
-                <form action="{{ route('releves.destroy', $releve) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce relevé ?')">Supprimer</button>
-                </form>
-            </td>
+    <form action="{{ route('releves.destroy', $releve) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce relevé ?')" class="delete-button">Supprimer</button>
+    </form>
+</td>
+
         </tr>
     @endforeach
 </tbody>
