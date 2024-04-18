@@ -1,0 +1,42 @@
+<?php
+
+return [
+    'header' => 'TempID',
+    'logout' => 'Uitloggen',
+    'success' => 'Operatie succesvol!',
+    'history' => 'Geschiedenis',
+    'today' => 'Vandaag',
+    'number' => 'Nummer',
+    'branch' => 'Vestiging',
+    'location' => 'Locatie',
+    'date' => 'Datum',
+    'moment' => 'Moment',
+    'temperature' => 'Temperatuur',
+    'humidity' => 'Vochtigheid',
+    'comment' => 'Opmerking',
+    'add_content' => 'Inhoud toevoegen',
+
+
+    'confirm_add_reading' => 'Bevestig het toevoegen van een meting:',
+    'date' => 'Datum',
+    'local' => 'Locatie',
+    'day_moment' => 'Moment van de dag',
+    'temperature' => 'Temperatuur',
+    'humidity' => 'Luchtvochtigheid',
+    'comment' => 'Opmerking',
+    'confirm_add_reading' => 'Bevestig het toevoegen van een meting',
+    'confirm_yes' => 'Ja',
+    'confirm_no' => 'Nee',
+    'add_reading' => 'Meetpunt toevoegen',
+    'home' => 'Home',
+    'moment_of_day' => 'Moment van de dag',
+    'morning' => 'Ochtend',
+'afternoon' => 'Middag',
+'evening' => 'Avond',
+'check_readings' => 'Controleer de metingen',
+'supprimer' => 'Supprimer',
+'nom_succursale' => 'Naam van het filiaal',
+'description_locale' => 'Beschrijving van de locatie',
+'date_heure' => 'Datum en tijd',
+
+];

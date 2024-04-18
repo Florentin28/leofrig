@@ -53,26 +53,16 @@
             </tr>
         </thead>
         <tbody>
-        @foreach ($locaux as $local)
-    <tr>
-        <td>{{ $local->id }}</td>
-        @if ($local->succursale)
-            <td>{{ $local->succursale->id }}</td>
-            <td>{{ $local->succursale->nom }}</td>
-            <td>{{ $local->description }}</td>
-            <td>{{ $local->actif ? 'Oui' : 'Non' }}</td>
-            <td>{{ $local->succursale->pays }}</td>
-        @else
-            <td>N/A</td>
-            <td>N/A</td>
-            <td>{{ $local->description }}</td>
-            <td>{{ $local->actif ? 'Oui' : 'Non' }}</td>
-            <td>N/A</td>
-        @endif
-    </tr>
-@endforeach
-
-
+            @foreach ($locaux as $local)
+                <tr>
+                    <td>{{ $local->id }}</td>
+                    <td>{{ $local->succursale ? $local->succursale->id : 'N/A' }}</td>
+                    <td>{{ $local->succursale ? $local->succursale->Nom : 'N/A' }}</td>
+                    <td>{{ $local->description }}</td>
+                    <td>{{ $local->actif ? 'Oui' : 'Non' }}</td>
+                    <td>{{ $local->succursale ? $local->succursale->pays : 'N/A' }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 

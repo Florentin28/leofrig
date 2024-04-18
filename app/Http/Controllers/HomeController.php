@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Releve;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Log; // Ajout de l'import pour utiliser Log
+
+
 
 class HomeController extends Controller
 {
@@ -37,5 +41,16 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Veuillez vous connecter pour accéder à cette page.');
         }
     }
-    
+
+    public function switchLanguage($lang)
+    {
+        // Définition de la langue dans la session
+        session(['locale' => $lang]);
+
+        // Ajout d'un message dans la console pour indiquer que la langue a été sélectionnée
+        Log::info("Langue sélectionnée : $lang"); // Message de log
+
+        // Redirection vers la page précédente
+        return redirect()->back();
+    }
 }

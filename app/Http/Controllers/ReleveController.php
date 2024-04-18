@@ -8,6 +8,9 @@ use App\Models\Releve;
 use App\Models\User; // Importez le modèle User
 use App\Models\Local;
 use App\Models\TypeLocal;
+use Illuminate\Support\Facades\Log; // Ajout de l'import pour utiliser Log
+use App\Models\Succursale;
+
 
 
 class ReleveController extends Controller
@@ -50,32 +53,40 @@ class ReleveController extends Controller
     
     
 
-
-      public function relevesEffectues()
+    public function relevesEffectues()
     {
         try {
-            // Récupérer les relevés effectués depuis la base de données
-            $releves_effectues = Releve::all(); // Ou utilisez une requête pour récupérer les relevés nécessaires
+            // Récupérer les relevés effectués depuis la base de données en chargeant la relation succursale
+            $releves_effectues = Releve::with('succursale')->get();
+            
+            // Récupérer toutes les succursales
+            $succursales = Succursale::all();
     
-            // Passer les relevés effectués à la vue
-            return view('admin.releves_effectues', compact('releves_effectues')); // Vue renommée à "releves_effectues.blade.php"
+         
+    
+            // Passer les relevés effectués et les succursales à la vue
+            return view('admin.releves_effectues', compact('releves_effectues', 'succursales'));
         } catch (\Exception $e) {
             // Gérer les erreurs
             return view('admin.releves_effectues')->with('error', 'Une erreur est survenue lors de la récupération des données.');
         }
     }
     
+    
+
+    
 
     public function emplacementsARelever()
     {
-        // Récupérer les locaux à relever depuis le modèle Local
-        $locaux = Local::all();
-    
+        // Récupérer les locaux à relever en incluant les données des succursales associées
+        $locaux = Local::with('succursale')->get();
+        
         // Retourner la vue avec les locaux récupérés
         return view('admin.emplacements_a_relever', compact('locaux'));
     }
     
-
+    
+    
 
 public function store(Request $request)
 {
@@ -136,5 +147,19 @@ public function destroy(Releve $releve)
     $releve->delete();
     return redirect()->back()->with('success', 'Le relevé a été supprimé avec succès.');
 }
+
+
+public function switchLanguage($lang)
+    {
+        // Définition de la langue dans la session
+        session(['locale' => $lang]);
+
+        // Ajout d'un message dans la console pour indiquer que la langue a été sélectionnée
+        Log::info("Langue sélectionnée : $lang"); // Message de log
+
+        // Redirection vers la page précédente
+        return redirect()->back();
+    }
+
 
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un relevé</title>
+    <title>@lang('messages.add_reading')</title>
     <style>
     /* Styles CSS existants */
     body {
@@ -275,7 +275,7 @@ button.delete-button:hover {
     </style>
 </head>
 <body>
-<a href="{{ route('home') }}" class="btn-home">Accueil</a>
+<a href="{{ route('home') }}" class="btn-home">@lang('messages.home')</a>
 
 <!-- Affichage du message de succès après la suppression d'un relevé -->
 @if(session('success'))
@@ -284,8 +284,16 @@ button.delete-button:hover {
     </div>
 @endif
 
+
+  <!-- Ajoutez le menu pour choisir la langue ici -->
+  <div>
+    <a href="{{ route('lang.switch', 'fr') }}">Français</a>
+<a href="{{ route('lang.switch', 'nl') }}">Néerlandais</a>
+
+    </div>
+    
 <div class="form-wrapper">
-    <h1>Ajouter un relevé</h1>
+<h1>@lang('messages.add_reading')</h1>
 
     <!-- Formulaire de création d'un relevé -->
     <div class="form-container">
@@ -294,12 +302,12 @@ button.delete-button:hover {
 
             <!-- Champs du formulaire ici -->
             <div>
-                <label for="id_datetime">Date :</label>
+            <label for="id_datetime">@lang('messages.date') :</label>
                 <input type="date" name="id_datetime" id="id_datetime" required>
             </div>
 
             <div>
-                <label for="id_local">Local :</label>
+            <label for="id_local">@lang('messages.local') :</label>
                 <select name="id_local" id="id_local">
                     @foreach ($locaux as $local)
                         @if ($local->id_succ == $user->id_succ)
@@ -310,38 +318,39 @@ button.delete-button:hover {
             </div>
 
             <div>
-                <label for="id_moment">Moment de la journée :</label>
-                <div>
-                    <input type="radio" id="matin" name="id_moment" value="Matin" required>
-                    <label for="matin">Matin</label>
-                </div>
-                <div>
-                    <input type="radio" id="apres_midi" name="id_moment" value="Après-midi">
-                    <label for="apres_midi">Après-midi</label>
-                </div>
-                <div>
-                    <input type="radio" id="soir" name="id_moment" value="Soir">
-                    <label for="soir">Soir</label>
-                </div>
-            </div>
+    <label for="id_moment">@lang('messages.day_moment') :</label>
+    <div>
+        <input type="radio" id="matin" name="id_moment" value="Matin" required>
+        <label for="matin">@lang('messages.morning')</label>
+    </div>
+    <div>
+        <input type="radio" id="apres_midi" name="id_moment" value="Après-midi">
+        <label for="apres_midi">@lang('messages.afternoon')</label>
+    </div>
+    <div>
+        <input type="radio" id="soir" name="id_moment" value="Soir">
+        <label for="soir">@lang('messages.evening')</label>
+    </div>
+</div>
+
 
             <div>
-                <label for="releve_temp">Température :</label>
+            <label for="releve_temp">@lang('messages.temperature') :</label>
                 <input type="number" name="releve_temp" id="releve_temp" required min="-50" max="100">
             </div>
 
             <div>
-                <label for="releve_hum">Taux d'humidité :</label>
+            <label for="releve_hum">@lang('messages.humidity') :</label>
                 <input type="number" name="releve_hum" id="releve_hum" required min="0" max="100">
             </div>
 
             <div>
-                <label for="releve_comment">Commentaire :</label>
+            <label for="releve_comment">@lang('messages.comment') :</label>
                 <textarea name="releve_comment" id="releve_comment" maxlength="100"></textarea>
             </div>
 
             <!-- Bouton de soumission -->
-            <button type="submit">Ajouter Relevé</button>
+            <button type="submit">@lang('messages.add_reading')</button>
         </form>
     </div>
 </div>
@@ -349,7 +358,7 @@ button.delete-button:hover {
 <!-- Bouton "Vérifier les relevés" -->
 <div class="button-container">
     <div class="verify-button">
-        <a href="{{ route('verifier-releves') }}" class="btn btn-primary">Vérifier les relevés</a>
+    <a href="{{ route('verifier-releves') }}" class="btn btn-primary">@lang('messages.check_readings')</a>
     </div>
 </div>
 
@@ -360,15 +369,16 @@ button.delete-button:hover {
     <table>
         <thead>
             <tr>
-                <th>Numéro</th>
-                <th>Nom du Succursale</th>
-                <th>Description du Local</th>
-                <th>Date et heure</th>
-                <th>Moment de la journée</th>
-                <th>Température</th>
-                <th>Taux d'humidité</th>
-                <th>Commentaire</th>
-                <th>Supprimer</th>
+            <th>@lang('messages.number')</th>
+<th>@lang('messages.branch_name')</th>
+<th>@lang('messages.local_description')</th>
+<th>@lang('messages.date_time')</th>
+<th>@lang('messages.day_moment')</th>
+<th>@lang('messages.temperature')</th>
+<th>@lang('messages.humidity')</th>
+<th>@lang('messages.comment')</th>
+<th>@lang('messages.delete')</th>
+
             </tr>
         </thead>
         <tbody>
@@ -401,16 +411,18 @@ button.delete-button:hover {
 <!-- Boîte modale -->
 <div id="myModal" class="modal">
     <div class="modal-content">
-        <p>Confirmez-vous l'ajout de ce relevé ?</p>
-        <p><strong>Date :</strong> <span id="confirmDate"></span></p>
-        <p><strong>Local :</strong> <span id="confirmLocal"></span></p>
-        <p><strong>Moment de la journée :</strong> <span id="confirmMoment"></span></p>
-        <p><strong>Température :</strong> <span id="confirmTemp"></span></p>
-        <p><strong>Taux d'humidité :</strong> <span id="confirmHum"></span></p>
-        <p><strong>Commentaire :</strong> <span id="confirmComment"></span></p>
+    <p>@lang('messages.confirm_add_reading')</p>
+<p><strong>@lang('messages.date') :</strong> <span id="confirmDate"></span></p>
+<p><strong>@lang('messages.local') :</strong> <span id="confirmLocal"></span></p>
+<p><strong>@lang('messages.day_moment') :</strong> <span id="confirmMoment"></span></p>
+<p><strong>@lang('messages.temperature') :</strong> <span id="confirmTemp"></span></p>
+<p><strong>@lang('messages.humidity') :</strong> <span id="confirmHum"></span></p>
+<p><strong>@lang('messages.comment') :</strong> <span id="confirmComment"></span></p>
+
         <div class="button-container">
-            <button id="confirmYes">Oui</button>
-            <button id="closeModal">Non</button>
+        <button id="confirmYes">@lang('messages.yes')</button>
+<button id="closeModal">@lang('messages.no')</button>
+
         </div>
     </div>
 </div>
