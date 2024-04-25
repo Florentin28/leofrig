@@ -270,7 +270,25 @@ button.delete-button:hover {
     background-color: darkred;
 }
 
-    
+.lang-btn-container {
+    margin-top: 30px; /* Ajouter de l'espace au-dessus des boutons de langue */
+}
+
+.lang-btn {
+    margin-top: 20px; /* Ajouter de l'espace au-dessus des boutons de langue */
+    padding: 12px 24px;
+    background-color: #6f42c1; /* Violet */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.lang-btn:hover {
+    background-color: #0056b3; /* Bleu plus foncé au survol */
+}
+
 
     </style>
 </head>
@@ -285,12 +303,13 @@ button.delete-button:hover {
 @endif
 
 
-  <!-- Ajoutez le menu pour choisir la langue ici -->
-  <div>
-    <a href="{{ route('lang.switch', 'fr') }}">Français</a>
-<a href="{{ route('lang.switch', 'nl') }}">Néerlandais</a>
+<!-- Conteneur des boutons de langue -->
+<div class="lang-btn-container">
+    <a href="{{ route('lang.switch', 'fr') }}" class="btn lang-btn">Français</a>
+    <a href="{{ route('lang.switch', 'nl') }}" class="btn lang-btn">Néerlandais</a>
+</div>
 
-    </div>
+
     
 <div class="form-wrapper">
 <h1>@lang('messages.add_reading')</h1>

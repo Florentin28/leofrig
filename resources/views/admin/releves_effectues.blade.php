@@ -1,112 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relevés effectués</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        td.yes {
-            background-color: green;
-            color: white;
-        }
-        td.no {
-            background-color: red;
-            color: white;
-        }
-        .btn-home {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-        .btn-home:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
-    <h1>Relevés effectués</h1>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>releves effectués</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+                background-color: #f0f0f0;
+            }
 
-    <!-- Bouton pour retourner à la page admin -->
-    <a href="{{ route('admin.index') }}">Retour à la page admin</a>
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
 
-    <!-- Formulaire de sélection de succursale -->
-        <form action="{{ route('admin.relevesEffectues') }}" method="GET" id="filterForm">
-            <label for="succursale">Sélectionner une succursale :</label>
-            <select name="succursale" id="succursale">
-    <option value="">Toutes les succursales</option>
-    @isset($succursales)
-        @foreach($succursales as $succursale)
-            <option value="{{ $succursale->id }}">{{ $succursale->Nom }}</option>
-        @endforeach
-    @endisset
-</select>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
 
-        <button type="button" id="filterButton">Filtrer</button>
-    </form>
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            td.yes {
+                background-color: green;
+                color: white;
+            }
+
+            td.no {
+                background-color: red;
+                color: white;
+            }
+
+            .menu {
+                float: left;
+                margin-right: 20px;
+
+                list-style-type: none;
+        padding: 0;
+        max-height: 200px; /* Ajustez la hauteur maximale selon vos besoins */
+        overflow-y: auto; /* Ajoute un défilement vertical si nécessaire */
+        border: 1px solid #ccc; /* Ajoute une bordure autour de la liste */
+        border-radius: 5px; /* Ajoute un arrondi aux coins de la liste */
+        background-color: #fff; /* Définit la couleur de fond de la liste */
+            }
+
+            .menu ul {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .menu ul li {
+                margin-bottom: 5px;
+        padding: 10px;
+            }
+
+            .menu ul li a {
+                text-decoration: none;
+                color: #007bff;
+            
+        display: block;
+            }
+
+            .menu ul li a:hover {
+                text-decoration: underline;
+                background-color: #f2f2f2; /* Change la couleur de fond lors du survol */
+
+            }
+        </style>
+    </head>
+    <body>
+        <h1>releves effectués</h1>
+
+    
+        <!-- Bouton de déconnexion -->
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button type="submit">Déconnexion</button>
+        </form>
+
+    <!-- Menu des succursales -->
+    <div class="menu">
+        <h2>Succursales</h2>
+        <ul>
+            @foreach($locaux as $local) 
+                <li><a href="{{ route('admin.show', ['id' => $local->id]) }}" data-local-id="{{ $local->id }}">{{ $local->Nom }}</a></li>
+            @endforeach
+            <li><a href="{{ route('admin.index') }}">Toutes les succursales</a></li>
+        </ul>
+    </div>
+    <!-- Bouton pour afficher les relevés effectués -->
+        <a href="{{ route('releves_effectues') }}" class="btn">Relevés effectués</a>
+    </div>
+
+    <a href="{{ route('emplacements_a_relever') }}" class="btn-home">Emplacements à Relever</a>
+
+    <a href="{{ route('ouvertures') }}" class="btn-home-2">Ouvertures</a>
+
+
 
     <!-- Tableau des relevés -->
     <table>
         <thead>
             <tr>
-                <th>Pays</th>
+                <th>Numéro</th>
                 <th>Numéro de la succursale</th>
                 <th>Nom de la succursale</th>
-                <th>Date du relevé</th>
+                <th>ID du local</th>
                 <th>Nom du local</th>
-                <th>Matin</th>
-                <th>Après-midi</th>
-                <th>Soir</th>
+                <th>Date du relevé</th>
+                <th>Moment de la journée</th>
+                <th>Température</th>
+                <th>Taux d'humidité</th>
+                <th>Commentaire</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($releves_effectues->sortByDesc('id_datetime') as $releve)
+            @if($releves->isEmpty())
                 <tr>
-                    <td>{{ $releve->succursale ? $releve->succursale->Pays : 'N/A' }}</td>
-                    <td>{{ $releve->succursale ? $releve->succursale->id : 'N/A' }}</td>
-                    <td>{{ $releve->succursale ? $releve->succursale->Nom : 'N/A' }}</td>
-                    <td>{{ $releve->id_datetime }}</td>
-                    <td>{{ $releve->local->description }}</td>
-                    <td class="{{ $releve->releve_temp_matin ? 'yes' : 'no' }}">{{ $releve->releve_temp_matin ? 'Oui' : 'Non' }}</td>
-                    <td class="{{ $releve->releve_temp_midi ? 'yes' : 'no' }}">{{ $releve->releve_temp_midi ? 'Oui' : 'Non' }}</td>
-                    <td class="{{ $releve->releve_temp_soir ? 'yes' : 'no' }}">{{ $releve->releve_temp_soir ? 'Oui' : 'Non' }}</td>
+                    <td colspan="10">Pas de relevés</td>
                 </tr>
-            @endforeach
+            @else
+                @foreach($releves as $releve)
+                <tr>
+                    <td>{{ $releve->id }}</td>
+                    <td>{{ $releve->succursale->id }}</td>
+                    <td>{{ $releve->succursale->Nom }}</td>
+                    <td>{{ $releve->local->id }}</td>
+                    <td>{{ $releve->local->description }}</td>
+                    <td>{{ $releve->id_datetime }}</td>
+                    <td>{{ $releve->id_moment }}</td>
+                    <td class="{{ $releve->tmp_ok ? 'yes' : 'no' }}">{{ $releve->releve_temp }}</td>
+                    <td class="{{ $releve->hum_ok ? 'yes' : 'no' }}">{{ $releve->releve_hum }}</td>
+                    <td>{{ $releve->releve_comment }}</td>
+                </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
 
-    <script>
-        document.querySelector('#filterButton').addEventListener('click', function(event) {
-            document.querySelector('#filterForm').submit();
 
-            
-        });
+
+
+    <script>
+      // Détection du clic sur un lien de succursale
+document.querySelectorAll('.menu ul li a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        // Empêcher le comportement par défaut du lien
+        event.preventDefault();
+
+        let localId = this.getAttribute('data-local-id');
+        fetch(`/admin?local_id=${localId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Relevés de la succursale:", data);
+                // Mettre à jour les données de la page sans changer l'URL
+                // Par exemple, vous pouvez remplacer le contenu de certaines parties de la page avec les nouvelles données
+            })
+            .catch(error => console.error('Erreur lors de la récupération des relevés:', error));
+    });
+});
+
+
     </script>
 
-</body>
-</html>
+    </body>
+    </html>

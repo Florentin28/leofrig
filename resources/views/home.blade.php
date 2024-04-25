@@ -180,6 +180,42 @@
         .filter-link.active {
             background-color: #0056b3; /* Couleur de fond active */
         }
+
+        .language-btn-container {
+    margin-top: 20px; /* Espacement au-dessus des boutons */
+    margin-bottom: 20px; /* Espacement en dessous des boutons */
+}
+
+.language-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 16px;
+    
+}
+
+.language-btn.fr {
+    background-color: #007bff; /* Bleu */
+    color: #fff;
+    background-color: #6f42c1; /* Violet */
+
+}
+
+.language-btn.nl {
+    background-color: #28a745; /* Vert */
+    color: #fff;
+    background-color: #6f42c1; /* Violet */
+
+}
+
+.language-btn:hover {
+    opacity: 0.8; /* Réduit légèrement l'opacité au survol */
+}
+
+
     </style>
 </head>
 <body>
@@ -201,11 +237,13 @@
     @endif
 
       <!-- Ajoutez le menu pour choisir la langue ici -->
-    <div>
-    <a href="{{ route('lang.switch', 'fr') }}">Français</a>
-<a href="{{ route('lang.switch', 'nl') }}">Néerlandais</a>
+      <div class="language-btn-container">
+    <a href="{{ route('lang.switch', 'fr') }}" class="language-btn fr">Français</a>
+    <a href="{{ route('lang.switch', 'nl') }}" class="language-btn nl">Néerlandais</a>
+</div>
 
-    </div>
+
+
 
     <!-- Choix entre historique et aujourd'hui -->
     <div class="filter-container">

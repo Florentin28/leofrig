@@ -63,10 +63,13 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/releves', [ReleveController::class, 'store'])->name('releves.store');
     Route::get('/verifier-releves', [VerificationController::class, 'index'])->name('verifier-releves');
     Route::delete('/releves/{releve}', [ReleveController::class, 'destroy'])->name('releves.destroy');
-    Route::get('/releves-effectues', [ReleveController::class, 'relevesEffectues'])->name('releves_effectues');
-    Route::get('/admin/releves-effectues', [ReleveController::class, 'relevesEffectues'])->name('admin.relevesEffectues');
+    Route::get('/releves-effectues', [AdminController::class, 'showRelevesEffectues'])->name('releves_effectues');
 
-    Route::get('/emplacements-a-relever', [ReleveController::class, 'emplacementsARelever'])->name('emplacements_a_relever');
+
+    Route::get('/ouvertures', [AdminController::class, 'ouvertures'])->name('ouvertures');
+
+
+    Route::get('/emplacements-a-relever', [AdminController::class, 'emplacementsARelever'])->name('emplacements_a_relever');
 });
 
 // Route pour le changement de langue
